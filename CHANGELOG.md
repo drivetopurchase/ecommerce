@@ -1,3 +1,9 @@
+## 1.3.1 (February 27, 2020)
+
+FIX:
+* Round `order_amount` parameter when sending the amount to `Gobeep`
+* Fix timezone and date issues
+
 ## 1.3.0 (February 24, 2020)
 
 FEATURES:

@@ -46,7 +46,11 @@ class Gobeep_Ecommerce_Model_Link extends Mage_Core_Helper_Abstract
 
         // Prepare the link
         return Mage::helper('gobeep_ecommerce')->getCashierLink([
-            'order_amount' => $orderAmount,
+            'order_amount' => Mage::getModel('directory/currency')->format(
+                $orderAmount,
+                ['display' => Zend_Currency::NO_SYMBOL],
+                false
+            ),
             'order_id' => $orderId,
             'referrer' => 'online',
         ], $storeId);

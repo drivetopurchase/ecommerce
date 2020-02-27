@@ -214,7 +214,7 @@ class Gobeep_Ecommerce_Helper_Data extends Mage_Core_Helper_Abstract
         }
 
         // Convert to timestamp
-        $startDate = new DateTime($startDate, new DateTimeZone($timezone));
+        $startDate = new DateTime($startDate . ' 00:00:00', new DateTimeZone($timezone));
         $endDate = new DateTime($endDate . ' 23:59:59', new DateTimeZone($timezone));
         $currentDate = new DateTime(date('Y-m-d H:i:s', strtotime('now')), new DateTimeZone($timezone));
 
@@ -246,7 +246,6 @@ class Gobeep_Ecommerce_Helper_Data extends Mage_Core_Helper_Abstract
     protected function isDayEligible($eligibleDays, $timezone)
     {
         $currentDate = new DateTime(date('Y-m-d H:i:s', strtotime('now')), new DateTimeZone($timezone));
-        $currentDate->setTimezone(new DateTimeZone('UTC'));
 
         // If date is in range, check if day of week is eligible
         $dayOfWeek = intval($currentDate->format('w'));
