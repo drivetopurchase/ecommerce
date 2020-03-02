@@ -1,4 +1,4 @@
-[![Gitter][gitter-badge-image]][gitter-badge-url]
+[![Gitter](https://badges.gitter.im/gbeep/magento1-plugin.svg)](https://gitter.im/gbeep/magento1-plugin?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ## GoBeep - Ecommerce module - Magento 1x
 
