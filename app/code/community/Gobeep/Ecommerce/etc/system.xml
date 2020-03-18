@@ -43,7 +43,7 @@
                         </active>
                         <game_url translate="label">
                             <label>Game URL</label>
-                            <comment><![CDATA[Post here the game URL given by GoBeep on the form: https://eu.d2p.run/XXX]]></comment>
+                            <comment><![CDATA[Post here the game URL given by GoBeep on the form: https://eu.gb.run/XXX]]></comment>
                             <frontend_type>text</frontend_type>
                             <validate>validate-url</validate>
                             <sort_order>2</sort_order>
@@ -53,7 +53,7 @@
                         </game_url>
                         <cashier_url translate="label">
                             <label>Cashier URL</label>
-                            <comment><![CDATA[Post here the cashier URL given by GoBeep on the form: https://eu-pos.d2p.run/XXX]]></comment>
+                            <comment><![CDATA[Post here the cashier URL given by GoBeep on the form: https://eu-pos.gb.run/XXX]]></comment>
                             <frontend_type>text</frontend_type>
                             <validate>validate-url</validate>
                             <sort_order>3</sort_order>
