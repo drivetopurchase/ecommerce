@@ -1,11 +1,14 @@
 {
   "name": "gbeep/magento1-plugin",
   "description": "Gobeep extension for Magento 1",
-  "version": "1.3.1",
+  "version": "2.0.0",
   "license": [
-    "OSL-3.0"
+    "MIT"
   ],
+  "minimum-stability": "dev",
   "require": {
-    "php": " >= 5.3"
+      "php": " >= 7.2",
+      "magento-hackathon/magento-composer-installer": "3.2.*",
+      "gbeep/ecommerce-sdk-php": "^1.0@beta"
   }
 }

@@ -24,7 +24,7 @@
     <menu>
         <sales>
             <children>
-                <gobeep_ecommerce_refund translate="title" module="gobeep_ecommerce">
+                <gobeep_ecommerce_refund>
                     <title>Gobeep Refunds</title>
                     <action>adminhtml/gobeep</action>
                 </gobeep_ecommerce_refund>

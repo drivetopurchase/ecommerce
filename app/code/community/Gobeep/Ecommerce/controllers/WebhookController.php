@@ -26,10 +26,9 @@ class Gobeep_Ecommerce_WebhookController extends Mage_Core_Controller_Front_Acti
      */
     public function notifyAction()
     {
-        $helper = Mage::helper('gobeep_ecommerce');
-        $store = Mage::app()->getStore()->getStoreId();
-        // Check if module is enabled
-        if (!$helper->isModuleEnabled($store, false)) {
+        $sdk = Mage::getSingleton('gobeep_ecommerce/sdk');
+        // Check if SDK is ready
+        if (!$sdk->isReady(false)) {
             $errors[] = 'Webhook is disabled, please come back later';
             $this->getResponse()
                 ->setBody(json_encode(['success' => false, 'errors' => $errors]))
@@ -59,7 +58,7 @@ class Gobeep_Ecommerce_WebhookController extends Mage_Core_Controller_Front_Acti
 
         // Verify signature, return a 403 if hashes doesn't match
         $body = $this->getRequest()->getRawBody();
-        $digest = $helper->sign($body, $store);
+        $digest = $sdk->sign($body);
         if ($signature !== $digest) {
             $errors[] = 'Signature doesn\'t match with incoming data';
             $this->getResponse()

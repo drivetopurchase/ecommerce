@@ -19,6 +19,9 @@
  * @copyright   Copyright (c) GoBeep (https://gobeep.co)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
+
+use Gobeep\Ecommerce\SdkInterface;
+
 class Gobeep_Ecommerce_Model_Webhook_Request extends Mage_Core_Model_Abstract
 {
     /**
@@ -32,7 +35,7 @@ class Gobeep_Ecommerce_Model_Webhook_Request extends Mage_Core_Model_Abstract
         $helper = Mage::helper('gobeep_ecommerce');
         $refund = Mage::getModel('gobeep_ecommerce/refund');
         $refund->addData([
-            'status' => Gobeep_Ecommerce_Model_Refund::STATUS_PENDING,
+            'status' => SdkInterface::STATUS_PENDING,
             'order_id' => $payload->orderId,
             'created_at' => $payload->createdAt,
             'updated_at' => $payload->createdAt,

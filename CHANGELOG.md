@@ -1,3 +1,10 @@
+## 2.0.0 (May 26, 2020)
+
+CHORE:
+* That's a major release since all the business logic has moved to an external SDK
+* Dropped Game block and template which is useless (we can use `gobeep_ecommerce/link`) with another template
+* Renamed a few system config variables
+
 ## 1.3.1 (February 27, 2020)
 
 FIX:

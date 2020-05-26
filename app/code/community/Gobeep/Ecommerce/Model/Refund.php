@@ -19,14 +19,11 @@
  * @copyright   Copyright (c) GoBeep (https://gobeep.co)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
+
+use Gobeep\Ecommerce\SdkInterface;
+
 class Gobeep_Ecommerce_Model_Refund extends Mage_Core_Model_Abstract
 {
-    /**
-     * Statuses
-     */
-    const STATUS_PENDING  = 'pending';
-    const STATUS_REFUNDED = 'refunded';
-
     protected function _construct()
     {
         $this->_init('gobeep_ecommerce/refund');
@@ -40,21 +37,21 @@ class Gobeep_Ecommerce_Model_Refund extends Mage_Core_Model_Abstract
     public function sendStatusNotification()
     {
         $storeId = $this->getStoreId();
-        $notifyEnabled = Mage::getStoreConfig(Gobeep_Ecommerce_Helper_Data::XML_PATH_NOTIFY, $storeId);
+        $notifyEnabled = Mage::getStoreConfig(Gobeep_Ecommerce_Model_Sdk::XML_PATH_NOTIFY, $storeId);
         if (!$notifyEnabled) {
             return false;
         }
 
         try {
             $status = $this->getStatus();
-            $template = ($status === self::STATUS_REFUNDED) ?
-                Gobeep_Ecommerce_Helper_Data::XML_PATH_REFUND_EMAIL_TEMPLATE :
-                Gobeep_Ecommerce_Helper_Data::XML_PATH_WINNING_EMAIL_TEMPLATE;
+            $template = ($status === SdkInterface::STATUS_REFUNDED) ?
+                Gobeep_Ecommerce_Model_Sdk::XML_PATH_REFUND_EMAIL_TEMPLATE :
+                Gobeep_Ecommerce_Model_Sdk::XML_PATH_WINNING_EMAIL_TEMPLATE;
 
             // Check if emails have been already sent
             if (
-                ($status === self::STATUS_REFUNDED && $this->getRefundEmailSent()) ||
-                ($status === self::STATUS_PENDING && $this->getWinningEmailSent())
+                ($status === SdkInterface::STATUS_REFUNDED && $this->getRefundEmailSent()) ||
+                ($status === SdkInterface::STATUS_PENDING && $this->getWinningEmailSent())
             ) {
                 return false;
             }
@@ -78,7 +75,7 @@ class Gobeep_Ecommerce_Model_Refund extends Mage_Core_Model_Abstract
                 ]);
                 $mailer->send();
 
-                $this->setData(($status === self::STATUS_REFUNDED) ? 'refund_email_sent' : 'winning_email_sent', true);
+                $this->setData(($status === SdkInterface::STATUS_REFUNDED) ? 'refund_email_sent' : 'winning_email_sent', true);
                 $this->save();
             }
         } catch (Exception $e) {

@@ -1,5 +1,7 @@
 <?php
 
+require_once 'vendor/autoload.php';
+
 /**
  * GoBeep
  *
@@ -19,20 +21,16 @@
  * @copyright   Copyright (c) GoBeep (https://gobeep.co)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-?>
-<?php if ($this->canPlay()) : ?>
-    <footer class="footer">
-        <a class="gobeep" href="<?php echo $this->getLink() ?>">This goes to iframe</a>
-    </footer>
-    <!-- <script type="text/javascript">
-        $(document).ready(function() {
-            $("a.gobeep").fancybox({
-                'transitionIn': 'elastic',
-                'transitionOut': 'elastic',
-                'speedIn': 600,
-                'speedOut': 200,
-                'overlayShow': false
-            });
-        });
-    </script> -->
-<?php endif ?>
+
+use Gobeep\Ecommerce\SdkInterface;
+
+class Gobeep_Ecommerce_Model_System_Config_Source_Environment
+{
+    public function toOptionArray()
+    {
+        return [
+            ['value' => SdkInterface::ENV_STAGING, 'label' => Mage::helper('gobeep_ecommerce')->__('Staging')],
+            ['value' => SdkInterface::ENV_PRODUCTION, 'label' => Mage::helper('gobeep_ecommerce')->__('Production')]
+        ];
+    }
+}

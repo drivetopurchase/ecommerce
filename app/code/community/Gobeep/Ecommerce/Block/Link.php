@@ -22,9 +22,6 @@
 
 class Gobeep_Ecommerce_Block_Link extends Mage_Core_Block_Template
 {
-    const TYPE_CASHIER = 'cashier';
-    const TYPE_GAME = 'game';
-
     /**
      * Internal constructor
      */
@@ -42,22 +39,19 @@ class Gobeep_Ecommerce_Block_Link extends Mage_Core_Block_Template
      */
     public function canLink()
     {
-        if (
-            !$this->hasData('for') || !$this->hasData('order') ||
-            !is_a($this->getData('order'), 'Mage_Sales_Model_Order')
-        ) {
+        if (!$this->hasData('for')) {
             return false;
         }
 
         $order = $this->getData('order');
-        $storeId = $order->getStoreId();
+        $store = $order ? $order->getStoreId() : null;
 
-        $helper = Mage::helper('gobeep_ecommerce');
-        if (!$helper->isModuleEnabled($storeId)) {
+        $sdk = Mage::getSingleton('gobeep_ecommerce/sdk', [$store]);
+        if (!$sdk->isReady()) {
             return false;
         }
 
-        if ($this->getData('for') === self::TYPE_CASHIER) {
+        if ($this->getData('for') === Gobeep_Ecommerce_Model_Sdk::TYPE_CASHIER) {
             $orderAmount = $order->getGrandTotal();
             if ($orderAmount === 0) {
                 return false;
@@ -74,15 +68,14 @@ class Gobeep_Ecommerce_Block_Link extends Mage_Core_Block_Template
      */
     public function getImage()
     {
-        $order = $this->getData('order');
-        $storeId = $order->getStoreId();
-        $helper = Mage::helper('gobeep_ecommerce');
+        $store = $this->getData('order') ? $this->getData('order')->getStoreId() : null;
+        $sdk = Mage::getSingleton('gobeep_ecommerce/sdk', [$store]);
 
-        if ($this->getData('for') === self::TYPE_CASHIER) {
-            return $helper->getCashierImage($storeId);
+        if ($this->getData('for') === Gobeep_Ecommerce_Model_Sdk::TYPE_CASHIER) {
+            return $sdk->getImage(Gobeep_Ecommerce_Model_Sdk::TYPE_CASHIER);
         }
 
-        return $helper->getGameImage($storeId);
+        return $sdk->getImage(Gobeep_Ecommerce_Model_Sdk::TYPE_CAMPAIGN);
     }
 
     /**
@@ -92,11 +85,13 @@ class Gobeep_Ecommerce_Block_Link extends Mage_Core_Block_Template
      */
     public function getLink()
     {
-        $link = Mage::getModel('gobeep_ecommerce/link');
-        if ($this->getData('for') === self::TYPE_CASHIER) {
-            return $link->getCashierLink($this->getData('order'));
+        $store = $this->getData('order') ? $this->getData('order')->getStoreId() : null;
+        $sdk = Mage::getSingleton('gobeep_ecommerce/sdk', [$store]);
+
+        if ($this->getData('for') === Gobeep_Ecommerce_Model_Sdk::TYPE_CASHIER) {
+            return $sdk->getCashierLink($this->getData('order'));
         }
 
-        return $link->getGameLink($this->getData('order')->getStoreId());
+        return $sdk->getCampaignLink();
     }
 }

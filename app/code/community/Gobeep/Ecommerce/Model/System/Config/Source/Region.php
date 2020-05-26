@@ -1,5 +1,7 @@
 <?php
 
+require_once 'vendor/autoload.php';
+
 /**
  * GoBeep
  *
@@ -20,22 +22,15 @@
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-require_once 'vendor/autoload.php';
-
 use Gobeep\Ecommerce\SdkInterface;
 
-class Gobeep_Ecommerce_Helper_Data extends Mage_Core_Helper_Abstract
+class Gobeep_Ecommerce_Model_System_Config_Source_Region
 {
-    /**
-     * Returns possible module statuses
-     * 
-     * @return array
-     */
-    public function getStatuses()
+    public function toOptionArray()
     {
         return [
-            SdkInterface::STATUS_PENDING => $this->__('Pending'),
-            SdkInterface::STATUS_REFUNDED => $this->__('Refunded'),
+            ['value' => SdkInterface::REGION_EU, 'label' => Mage::helper('gobeep_ecommerce')->__('Europe')],
+            ['value' => SdkInterface::REGION_AM, 'label' => Mage::helper('gobeep_ecommerce')->__('North-America')]
         ];
     }
 }
