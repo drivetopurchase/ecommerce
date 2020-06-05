@@ -1,3 +1,8 @@
+## 2.0.1 (June 5, 2020)
+
+FIX:
+* Database setup constant moved to the SDK
+
 ## 2.0.0 (May 26, 2020)
 
 CHORE:
