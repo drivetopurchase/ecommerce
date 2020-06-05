@@ -31,7 +31,7 @@ $table = $installer->getConnection()
         'default'   => '0',
     ), 'Order ID')
     ->addColumn('order_increment_id', Varien_Db_Ddl_Table::TYPE_TEXT, 50, array(), 'Order Increment ID')
-    ->addColumn('status', Varien_Db_Ddl_Table::TYPE_TEXT, 20, array('nullable' => false, 'default' => Gobeep_Ecommerce_Model_Refund::STATUS_PENDING))
+    ->addColumn('status', Varien_Db_Ddl_Table::TYPE_TEXT, 20, array('nullable' => false, 'default' => SdkInterface::STATUS_PENDING))
     ->addColumn('created_at', Varien_Db_Ddl_Table::TYPE_TIMESTAMP, null, array('nullable' => true, 'default' => null))
     ->addColumn('updated_at', Varien_Db_Ddl_Table::TYPE_TIMESTAMP, null, array('nullable' => true, 'default' => null))
     ->addColumn('email_sent', Varien_Db_Ddl_Table::TYPE_SMALLINT, null, array('unsigned'  => true), 'Email Sent')
