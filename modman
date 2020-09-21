@@ -5,4 +5,3 @@ app/code/community/Gobeep/Ecommerce            app/code/community/Gobeep/Ecommer
 app/etc/modules/Gobeep_Ecommerce.xml            app/etc/modules/Gobeep_Ecommerce.xml
 # app/design
 app/design/frontend/base/default/template/gobeep/link.phtml            app/design/frontend/base/default/template/gobeep/link.phtml
-app/design/frontend/base/default/template/gobeep/game.phtml            app/design/frontend/base/default/template/gobeep/game.phtml
