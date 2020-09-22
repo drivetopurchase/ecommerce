@@ -19,7 +19,7 @@ First, have your developer download the plugin from GitHub (in the release secti
 
 ### Setup
 
-After the extension is installed, log in to the Magento Account, Click `System`, and then `Configuration`.
+After the extension has been installed, log in to the Magento Account, Click `System`, and then `Configuration`.
 Next, in the `left-nav` menu, under `Sales`, expand the `Gobeep Ecommerce` section.
 
 ### Inputs
