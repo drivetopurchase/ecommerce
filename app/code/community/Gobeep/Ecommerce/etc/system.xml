@@ -83,7 +83,7 @@
                             <label>Secret</label>
                             <comment><![CDATA[Cashier URL will be signed with this secret]]></comment>
                             <frontend_type>text</frontend_type>
-                            <validate>validate-code validate-length minimum-length-32 maximum-length-32</validate>
+                            <validate>validate-alphanum validate-length minimum-length-32 maximum-length-32</validate>
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
