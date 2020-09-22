@@ -19,7 +19,7 @@ First, have your developer download the plugin from GitHub (in the release secti
 
 ### Setup
 
-After the extension is installed, log in to the Magento Account, Click `System`, and then `Configuration`.
+After the extension has been installed, log in to the Magento Account, Click `System`, and then `Configuration`.
 Next, in the `left-nav` menu, under `Sales`, expand the `Gobeep Ecommerce` section.
 
 ### Inputs
@@ -49,7 +49,10 @@ Next, in the `left-nav` menu, under `Sales`, expand the `Gobeep Ecommerce` secti
 
 ##### Link block
 
-We recommend to use the `New Order` email to integrate the cashier/campaign links. The `Mage_Sales_Model_Order` object **MUST** be passed to the block when generating `cashier` links. The default template is located in `app/design/base/default/template/gobeep` directory.
+We recommend using the `New Order` email to integrate the cashier/campaign links. The `Mage_Sales_Model_Order` object **MUST** be passed to the block when generating `cashier` links. The default template is located in `app/design/base/default/template/gobeep` directory.
+
+Note: You **MUST** whitelist `gobeep_ecommerce/link` block, otherwise `Security problem: gobeep_ecommerce/link has not been whitelisted` error might pop up in logs and block will not be rendered.
+You may fix it via entering `System > Permissions > Blocks` in Admin Panel and defining new block whitelist with `gobeep_ecommerce/link` as a name. 
 
 ###### cashier link
 
@@ -82,5 +85,4 @@ If you want to use email notifications. Here's the list of templates.
 
 ### Support
 
-For any technical issue with the module, please open an issue on `Github`.
-
+For any technical issue with the module, please open an issue on `GitHub`.
